@@ -1,0 +1,79 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 10px !important;
+    overflow-x: hidden;
+    background-color: #e9f5e4;
+
+    
+}
+
+/* .header{
+    height: 80vh;
+    background-image: url("facilities.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+    /*clip-path: polygon(0 7%, 94% 6%, 96% 80%,1% 84%);*/
+    clip-path: polygon(0 0,100% 0,100% 75vh, 0 100%); 
+    margin-left: 5px;
+    margin-right: 5px;
+
+    
+
+    
+} */
+
+.header-inner {
+    
+
+}
+
+.custom-services {
+    width: 31%;
+    min-height: 15vh;
+    font-size: 0.95rem;
+    background-color: lightgray;
+
+    margin: 10px;
+    box-shadow: 10px 15px 25px rgba(0, 0, 0, 0.6);
+}
+
+.custom-services_inner {
+
+    max-width:100%;
+    padding: 0;
+    margin: 0;                                                                                                                                      
+}
+
+
+.services, .about { background-color: #a5d894;}
+
+.custom-border-r {
+    border-top-right-radius: 150px !important;
+}
+
+.custom-btn-primary {
+    background-color: #61bb43;
+    color: #fff;
+    
+}
+.custom-btn-primary:hover {
+    background-color: #4ea233;
+    border-color: #4ea233; 
+}
+
+
+
+.custom-portal{
+    min-height: 40vh;
+}
+
+.footer {
+    background-color: #ddf1d7 !important;}
