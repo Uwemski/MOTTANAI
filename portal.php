@@ -1,126 +1,64 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-        <link rel="stylesheet" href="main.css">
-        <title>Document</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 
-    </head>
-    <body>
-        <div>
-            <nav class="navbar navbar-expand-lg bg-light">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">MOTTANAI</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-                    </li>
-                     <!-- <li class="nav-item">
-                    <a class="nav-link" href="services.html">Services</a>
-                  </li> dummy till contents has been properly drafted for this page-->
-                    
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.php">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="faq.php">FAQ</a>
-                    </li>
-                    <li class="nav-item align-right">
-                        <a class="nav-link" href="portal.php">Portal</a>
-                    </li>
-                    </ul>
-                    <!-- <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form> -->
-                </div>
-                </div>
-            </nav>
-
-            <div class="row custom-portal">
-                <div class="col-md-8 text-uppercase text-center mx-auto"><h1>Welcome back</h1></div>
+  <title>Log In</title>
+</head>
+<body>
+    
+<div class="container px-4 py-5" id="featured-3">
+        <div class="row g-4 py-5">
+            <div class="col-md-10 mx-auto col-lg-8">
+                <h2 class="pb-2 text-center mb-3">Log In Here</h2>
+                <?php
+                  if(isset($_SESSION['userguard'])){
+                    echo "<div class='alert alert-danger'>".$_SESSION['userguard'] ."</div>";
+                    unset($_SESSION['userguard']);
+                }
+                if(isset($_SESSION['adminguard'])){
+                    echo "<div class='alert alert-danger'>".$_SESSION['adminguard'] ."</div>";
+                    unset($_SESSION['adminguard']);
+                }
                 
-                    <form action="">
-                        <div class="col-md-7 mx-auto">
-                            <label for="username">Username</label>
-                            <input type="text" name="username" id="username" class="form-control">
-                        </div>
-                        
-                        <div class="col-md-7 mx-auto">
-                            <label for="pass" class="form-label">Password</label>
-                            <input type="text" name="password" id="pass" class="form-control">
-                        </div>
-                        
-                        <div class="text-center pt-2">
-                            <a href class="btn btn-success login">Log In</a>
-                        </div>
-                        <div>
-                            <p>Dont have an account?<a href="sign.html" class="signin text-decoration-none text-success">Sign Up</a></p>
-                        </div>
-                        
-                    </form>
+
+                if(isset($_SESSION['feedback']) ){
+                    echo "<div class='alert alert-success col-md-6 mx-auto'>".$_SESSION["feedback"]."</div>";
+                    unset($_SESSION["feedback"]);
+                }
+                if(isset($_SESSION['errormsg']) ){
+                    echo "<div class='alert alert-success col-md-6 mx-auto'>".$_SESSION["errormsg"]."</div>";
+                    unset($_SESSION["errormsg"]);
+                }
                 
-            </div>
-            
-
-            <div class="footer row bg-success pt-5">
-                <div class="col-md-4">Some text goes here</div>
-        
-                <div class="col-md-4">
-                    <h3>Location</h3>
-                    <p>address</p>
-                    <p>No 5-8 Kafanchan street,</p>
-                    <p>Lekki epe,</p>
-                    <p>LAgos state, Nigeria</p>
-        
-                </div>
-                <div class="col-md-4">
-                    <h3 class="text-center">Contact Us</h3>
-                    <form action="">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" name="name" id="name" class="form-control">
-                            
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" name="email" id="email" class="form-control" required placeholder="enter email here..">
-        
-                        <p><button type= "button" class="btn btn-primary col-12">Contact us</button></p>
-        
-                    </form>
-                    </div>
-                </div>
-            </div>
-
+                ?>
+                <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" action="process/login_process.php" method="post">
+                      <div class="form-floating mb-3">
+                        <input type="email" class="form-control" placeholder="name@example.com" name="email">
+                        <label>E-mail</label>
+                      </div>
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" placeholder="Password" name="password">
+                    <label>Password</label>
+                  </div>
+                  
+                  <div class="checkbox mb-3">            
+                  </div>
+                  <button class="w-100 btn btn-lg btn-primary" type="submit" name="btn_login">Log In</button>
+                  <hr class="my-4">
+                  <small class="text-body-secondary">Don't have an account? <a href="sign.php">Sign Up</a></small>
+                  <p>Admin?<a href="Admin/admin_login.php">click here</a></p>
+                </form>
+              </div>
         </div>
+      </div>
 
-        <script src="bootstrap/js/bootstrap.bundle.js"></script>
-        <script src="jquery-3.7.1.min.js"></script>
-        <script>
-            $(document).ready(function(){
-
-                $('.login').click(function(){
-                    var name = $('#username').val();
-                    var email = $('#pass').val();
-                    if(name != "" && email != ""){
-                        alert('Welcome to your dashboard Mr '+ name);
-                    }else{
-                        alert('Please fill in the requird fields')
-                    }
-                });
-
-                $('.signin').click(function(){
-                    alert('Sign in is unavailable at the moment!');
-                });
-
-            });
-
-
-        </script>
-    </body>
+</body>
 </html>

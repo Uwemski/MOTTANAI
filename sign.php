@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php
+  session_start();
+  // require_once "process/signin_process.php";
+
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,108 +13,70 @@
         input:hover, textarea:hover {
             border:2px solid lightblue;
         }
+        form{
+          padding: 20px;
+          border: 0px solid black;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">MOTTANAI</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                  </li>
-                  <!-- <li class="nav-item">
-                    <a class="nav-link" href="services.html">Services</a>
-                  </li> dummy till contents has been properly drafted for this page-->
-
-                  <!--<li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Dropdown
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>-->
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="about.html">About</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="faq.html">FAQ</a>
-                  </li>
-                  <li class="nav-item align-right">
-                    <a class="nav-link" href="portal.html">Portal</a>
-                  </li>
-                </ul>
-                <form class="d-flex" role="search">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-              </div>
-            </div>
-              
-            
-          </nav>
     
+        <?php
+            require_once "partials/navbar.php";
         
-        <div class="row">
-            <h1 class="text-center text-uppercase">Register</h1>
+        ?>
+    <div class="container px-4 py-5" id="featured-3">
+        <div class="row g-4 py-5">
+            <div class="col-md-10 mx-auto col-lg-5">     
+            <h2 class="text-center text-uppercase">Register</h2>
             <span>Please fill all fields</span>
+       
+            
+        <?php
+          if(isset($_SESSION['errormsg'])){
+            echo "<div class='alert alert-danger>". $_SESSION['errormsg']."</div>";
+            unset($_SESSION['errormsg']);
+          }
+
+          if(isset($_SESSION['feedback'])){
+            echo "<div class='alert alert-success'>". $_SESSION['feedback']."</div>";
+            unset($_SESSION['feedback']);
+          }
+        ?>
+
+        
+            <form action="process/signin_process.php" method="post" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="firstname" id="fn" placeholder="Enter your  firstname">
+                        <label for="fn">First Name</label>
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="lastname" id="ln">
+                        <label for="ln">Last Name</label>
+                      </div>
+                  <div class="form-floating mb-3">
+                    <input type="email" class="form-control" name="email" id="email">
+                    <label for="email">Email</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" name="password" placeholder="Enter your Password">
+                    <label>Password</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" name="confirmpass" placeholder="Confirm Password">
+                    <label>Confirm Password</label>
+                  </div>
+                  
+                  <button class="w-100 btn btn-lg btn-primary" name="btn_sign" type="submit">Sign Up</button>
+                  <hr class="my-4">
+                  <small class="text-body-secondary">Already have an account?<a href="portal.php"> Sign In</a></small>
+                </form>
+        
+            </div>
         </div>
-        <form action="" method="post">
-            <div class="row">
-                <div class="col-md">
-                     <label for="fn">First Name *</label>
-                     <br>
-                     <input type="text" name="firstname" id="fn" class="form-control">
-                     <p class="d-none text-danger" id="p-w">This field is required</p>
-                </div>
-
-                <div class="col-md">
-                     <label for="ln">Last Name *</label>
-                     <input type="text" name="lastname" id="ln" class="form-control">
-                     <p class="d-none text-danger">This field is required</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md">
-                    <label for="email">Email address</label>
-                    <input type="email" name="email" id="email" class='form-control'>
-                    <p class="d-none text-danger"></p>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md">
-                    <label for="">Password</label>
-                    <input name="password" placeholder="Enter your password" class="form-control">
-                </div>
-                <div class="col-md">
-                    <label for="">Confirm password</label>
-                    <input type="password"  name="Confirm-Password " class="form-control" placeholder="confirm password"> 
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md">
-                    <label for="msg">Why did you choose us?</label>
-                    <textarea name="message" id="msg" 
-                    cols=20 rows= '8' class="form-control"></textarea>
-                    <p class="d-none text-danger">This field is required</p>
-                </div>    
-            </div>
-
-            <div><button class="btn btn-success col-12 mt-2 btn_reg">Sign Up</button></div>
-        </form>
-        <p>Already have an account. <a href="portal.html">Log in</a> </p>
     </div>
     
+    <script src="bootstrap/js/bootstrap.bundle.js"></script>
     <script src="jquery-3.7.1.min.js"></script>
     <!-- <script>
         $(document).ready(function(){
